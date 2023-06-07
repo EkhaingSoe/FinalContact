@@ -29,7 +29,7 @@ export const authApi = createApi({
             invalidatesTags: ["authApi"],
           }),
           logout: builder.mutation({
-            query: (token) => ({
+            query: ({token}) => ({
               url: "/user-logout",
               method: "POST",
               headers: { authorization: `Bearer ${token}` },

@@ -12,11 +12,14 @@ const Register = () => {
   const [password_confirmation, setPasswordComfirmation] = useState("");
   const [register] = useRegisterMutation();
   const navigate = useNavigate();
+  const [error, setError] = useState({});
   const registerHandler = async (e) => {
     e.preventDefault();
     const user = { name, email, password, password_confirmation };
     const { data } = await register(user);
     console.log(data);
+    console.log(data?.error?.data);
+        setError(data?.error?.data?.errors)
     if (data?.success) navigate("/login");
   };
   return (
@@ -39,6 +42,9 @@ const Register = () => {
               type="text"
               placeholder="Enter Name"
             />
+             <small className='text-red-500 text-xs pl-3'>
+              {error?.email?.map(item=>item)}
+            </small>
           </div>
           <div>
             <input
@@ -48,6 +54,9 @@ const Register = () => {
               type="email"
               placeholder="Email Address"
             />
+             <small className='text-red-500 text-xs pl-3'>
+              {error?.email?.map(item=>item)}
+            </small>
           </div>
           <div>
             <input
@@ -57,6 +66,9 @@ const Register = () => {
               type="password"
               placeholder="Password"
             />
+             <small className='text-red-500 text-xs pl-3'>
+              {error?.password?.map(item=>item)}
+            </small>
           </div>
           <div>
             <input
@@ -66,6 +78,9 @@ const Register = () => {
               type="password"
               placeholder="Password Comfirmation"
             />
+             <small className='text-red-500 text-xs pl-3'>
+              {error?.password?.map(item=>item)}
+            </small>
           </div>
 
           <div className="mt-4  font-semibold text-sm text-slate-500 text-center ">

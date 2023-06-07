@@ -6,6 +6,7 @@ import Loading from './pages/Loading'
 import Favorite from './pages/Favorite'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Detail from './pages/Detail'
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
         <Route path='*' element={<NotFound/>}/>
         <Route path='/favorite' element={<Favorite/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
+        <Route path='/register' element={<Register />} />
+        <Route path='/detail/:id' element={<Detail/>} />
       </Routes>
       </div>
   )

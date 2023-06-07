@@ -12,6 +12,8 @@ import { useGetContactsQuery } from "../features/api/contactApi";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
+  const user = useSelector(state => state.auth.user);
+  console.log(user);
   const nav = useNavigate()
   const token = Cookies.get('token')
   const [show,setShow] = useState(false)
@@ -22,7 +24,7 @@ const Navbar = () => {
   console.log(data)
   return (
     <div>
-      <nav className="bg-gray-200 border-gray-200 dark:bg-gray-900">
+      <nav className="bg-gray-200 fixed right-0 left-0 top-0 border-gray-200 dark:bg-gray-900">
         <div className=" flex flex-wrap items-center justify-between  p-4">
           <p className="text-3xl font-bold flex items-center gap-2">
             <FcBusinessContact />
@@ -106,8 +108,8 @@ const Navbar = () => {
                     <CgProfile />
                   </div>
                   <div>
-                    <p className="font-bold ">Name</p>
-                    <p>gmail@gmail.com</p>
+                      <p className="font-bold ">{user?.name}</p>
+                      <p>{user?.email}</p>
                   </div>
                 </li>
                 <hr />
